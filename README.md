@@ -35,6 +35,7 @@ net.probe on
 net.show
 ```
 ![Network discovery](network-discovery.png)
+
 *Identifying the gateway and victim IP/MAC addresses on the LAN.*
 
 ### 4. ARP Spoofing
@@ -44,6 +45,7 @@ arp.spoof on
 ```
 ![ARP spoof set target](arp-spoof-active1.png)
 ![ARP spoof enabled](arp-spoof-active2.png)
+
 *Kali now sits between the victim and the gateway — spoofing both sides' ARP tables.*
 
 ### 5. Traffic Interception
@@ -54,6 +56,7 @@ http.proxy on
 Victim logs into a test HTTP login page. Credentials are captured in plaintext.
 
 ![Captured credentials](captured-credentials.png)
+
 *Plaintext POST request showing intercepted username and password.*
 
 ### 6. Cleanup
